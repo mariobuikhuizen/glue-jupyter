@@ -5,7 +5,7 @@ from glue.core import message as msg
 from glue.core.hub import HubListener
 
 
-class SubsetSelect(mui.Div, HubListener):
+class SubsetSelect(mui.Html, HubListener):
     """Widget responsible for selecting which subsets are active, sync state between UI and glue.
 
     On glue's side, the state is in `session.edit_subset_mode.edit_subset`. On the UI side, the state
@@ -14,7 +14,7 @@ class SubsetSelect(mui.Div, HubListener):
     """
 
     def __init__(self, session):
-        super(SubsetSelect, self).__init__()
+        super(SubsetSelect, self).__init__(tag='div')
         self.session = session
         self.data_collection = session.data_collection
         self.output = widgets.Output()  # for error msg'es etc
@@ -23,15 +23,15 @@ class SubsetSelect(mui.Div, HubListener):
             control=self.widget_menu_item_select_multiple_checkbox, label="Allow multiple subsets"
         )
         self.widget_menu_item_select_multiple = mui.MenuItem(
-            children=[self.widget_menu_item_select_multiple_fcl], click_fix=True, value="ignore"
+            children=[self.widget_menu_item_select_multiple_fcl], value="ignore"
         )
-        self.widget_menu_item_no_active = mui.MenuItem(description="No selection (create new)", value="new")
+        self.widget_menu_item_no_active = mui.MenuItem(children="No selection (create new)", value="new")
         self.widget_menu_items_subsets = []
         self.widget_menu_item_no_active.observe(self._on_click_menu_item_no_active, 'selected')
 
-        self.child = self.widget_select = mui.Select(
+        self.children = self.widget_select = mui.Select(
             children=[self.widget_menu_item_select_multiple, self.widget_menu_item_no_active],
-            style={"width": "248px", "margin": "5px"},
+            style_={"width": "248px", "margin": "5px"},
             value="new",
         )
 
@@ -88,7 +88,10 @@ class SubsetSelect(mui.Div, HubListener):
             with self.widget_select.hold_sync():
                 self.widget_select.multiple = False
                 # take the first item of the selected items as the single selected item
-                self.widget_select.value = self.widget_select.value[0]
+                if len(self.widget_select.value) > 0:
+                    self.widget_select.value = self.widget_select.value[0]
+                else:
+                    self.widget_select.value = "new"
 
     def _sync_ui_from_state(self, subset_groups_selected):
         # this is called when the state in glue is changed, we sync the UI to reflect its state
@@ -107,7 +110,7 @@ class SubsetSelect(mui.Div, HubListener):
                         self.widget_menu_items_subsets.append(new_menu)
                     menu = self.widget_menu_items_subsets[i]
                     menu.value = i
-                    menu.description = subset_group.label
+                    menu.children = subset_group.label
                     menu.selected = subset_group in self.session.edit_subset_mode.edit_subset
                     if menu.selected:
                         values.append(i)

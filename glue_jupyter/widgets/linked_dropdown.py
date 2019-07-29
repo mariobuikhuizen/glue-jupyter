@@ -95,7 +95,7 @@ class LinkedDropdown(Dropdown):
                     self.value = None
 
 
-class LinkedDropdownMaterial(mui.Div):
+class LinkedDropdownMaterial(mui.Html):
     """
     A dropdown widget that is automatically linked to a SelectionCallbackProperty
     and syncs changes both ways (Material UI version)
@@ -107,7 +107,7 @@ class LinkedDropdownMaterial(mui.Div):
 
     def __init__(self, state, attribute_name, ui_name=None, label=None):
 
-        super(LinkedDropdownMaterial, self).__init__()
+        super(LinkedDropdownMaterial, self).__init__(tag='div')
 
         if label is None:
             label = ui_name
@@ -124,14 +124,14 @@ class LinkedDropdownMaterial(mui.Div):
         self.widget_select = mui.Select(value=self._get_glue_selected_item_index(),
                                         children=self.menu_items, multiple=False)
 
-        self.widget_input_label = mui.InputLabel(description=label,
+        self.widget_input_label = mui.InputLabel(children=label,
                                                  placeholder='No selection')
 
         # Note that style is a dict with css key/values
         self.widget_form_control = mui.FormControl(
-            children=[self.widget_input_label, self.widget_select], style={'width': '100%'}
+            children=[self.widget_input_label, self.widget_select], style_={'width': '100%'}
         )
-        self.child = self.widget_form_control
+        self.children = self.widget_form_control
 
         # Set up callbacks to keep SelectionCallbackProperty and UI in sync
         self.state.add_callback(self.attribute_name, self._update_ui_from_glue_state)
@@ -167,7 +167,7 @@ class LinkedDropdownMaterial(mui.Div):
         choices, labels = get_choices(self.state, self.attribute_name)
 
         # Generate menu items
-        return [mui.MenuItem(description=label, value=index) for index, label in enumerate(labels)]
+        return [mui.MenuItem(children=label, value=index) for index, label in enumerate(labels)]
 
     def _get_glue_selected_item_index(self):
         """
