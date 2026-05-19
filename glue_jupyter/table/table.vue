@@ -57,8 +57,7 @@
         :class="['elevation-1', 'glue-data-table', scrollable && 'glue-data-table--scrollable']"
         :style="scrollable && height != null && `height: ${height}`"
       >
-      <template v-slot:header="props">
-        <thead>
+      <template v-slot:headers="props">
           <tr>
             <th :style="'padding: 0 10px; width: '+Math.max(1, Math.ceil(Math.log10(total_length)))*20+'px'">#</th>
             <th style="padding: 0 1px; width: 30px" v-if="selection_enabled">
@@ -72,6 +71,7 @@
             <th v-for="header in headers"
                 :key="header.text"
                 @click="toggleSort(header.value)"
+                class="text-left text-no-wrap"
                 style="cursor: pointer; user-select: none;"
             >
               {{ header.text }}
@@ -80,14 +80,13 @@
               </v-icon>
             </th>
           </tr>
-        </thead>
       </template>
       <template v-slot:item="props">
         <tr @click="on_row_clicked(props.item.__row__)" :class="{'highlightedRow': props.item.__row__ === highlighted}">
           <td style="padding: 0 10px" class="text-left">
             <i>{{ props.item.__row__ }}</i>
           </td>
-          <td style="padding: 0 1px" class="text-left" v-if="selection_enabled">
+          <td style="padding: 0 1px; width: 30px" class="text-left" v-if="selection_enabled">
             <v-checkbox
               density="compact" hide-details style="margin-top: 0; padding-top: 0"
               :model-value="checked.indexOf(props.item.__row__) != -1"
@@ -105,7 +104,7 @@
           </td>
           <td v-for="header in headers"
               :key="header.text"
-              class="text-right text-truncate text-no-wrap glue-selectable-cell"
+              class="text-left text-truncate text-no-wrap glue-selectable-cell"
               :class="{'glue-cell-selected': isSelected(props.item.__row__, header.value)}"
               :title="props.item[header.value]"
               @click.stop="selectCell(props.item.__row__, header.value, props.item[header.value], header.editable)"
@@ -267,7 +266,7 @@ module.exports = {
   min-height: 250px;
 }
 
-.glue-data-table .v-data-table__wrapper {
+.glue-data-table .v-table__wrapper {
   overflow-x: auto;
 }
 
@@ -292,7 +291,7 @@ module.exports = {
   height: 28px;
 }
 
-.glue-data-table--scrollable .v-data-table__wrapper {
+.glue-data-table--scrollable .v-table__wrapper {
   overflow-y: auto;
   height: calc(100% - 59px);
 }
@@ -302,16 +301,16 @@ module.exports = {
   top: 0;
 }
 
-.glue-data-table--scrollable .v-data-table__wrapper,
-.glue-data-table--scrollable .v-data-table__wrapper > table,
-.glue-data-table--scrollable .v-data-table__wrapper > table thead,
-.glue-data-table--scrollable .v-data-table__wrapper > table thead *
+.glue-data-table--scrollable .v-table__wrapper,
+.glue-data-table--scrollable .v-table__wrapper > table,
+.glue-data-table--scrollable .v-table__wrapper > table thead,
+.glue-data-table--scrollable .v-table__wrapper > table thead *
 {
   background-color: inherit;
 }
 
 /* prevent checkboxes overlaying the table header */
-.glue-data-table--scrollable .v-data-table__wrapper > table thead {
+.glue-data-table--scrollable .v-table__wrapper > table thead {
   position: relative;
   z-index: 1;
 }
