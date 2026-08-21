@@ -45,12 +45,12 @@
     </div>
 
     <v-slide-x-transition appear>
-      <v-data-table
+      <v-data-table-server
         density="compact"
         hide-default-header
         :headers="[...headers]"
         :items="items"
-        :footer-props="{'items-per-page-options': [10,20,50,100]}"
+        :items-per-page-options="[10, 20, 50, 100]"
         v-model:page="options.page"
         v-model:items-per-page="options.itemsPerPage"
         v-model:sort-by="tableSortBy"
@@ -112,7 +112,7 @@
           >{{ props.item[header.value] }}</td>
         </tr>
       </template>
-      </v-data-table>
+      </v-data-table-server>
     </v-slide-x-transition>
   </div>
 </template>
