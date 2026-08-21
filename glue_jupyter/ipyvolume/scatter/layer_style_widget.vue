@@ -16,20 +16,20 @@
           <v-select label="attribute" :items="size_att_items" v-model="size_att_selected" hide-details />
       </div>
       <div>
-          <glue-float-field label="min" v-model:value="size_vmin" />
+          <glue-float-field label="min" v-model:value="size_vmin" echo-type="float" />
       </div>
       <div>
-          <glue-float-field label="max" v-model:value="size_vmax" />
+          <glue-float-field label="max" v-model:value="size_vmax" echo-type="float" />
       </div>
     </template>
     <template v-else>
       <div>
-          <glue-float-field label="size" v-model:value="size" />
+          <glue-float-field label="size" v-model:value="size" echo-type="int" />
       </div>
     </template>
     <div>
         <div class="slider-label">size scaling</div>
-        <glue-throttled-slider wait="300" min="0.1" max="10" step="0.01" v-model:value="size_scaling"
+        <glue-throttled-slider wait="300" min="0.1" max="10" step="0.01" v-model:value="size_scaling" echo-type="float"
               hide-details />
     </div>
     <div class="text-subtitle-2 font-weight-bold">Color</div>
@@ -41,10 +41,10 @@
           <v-select label="attribute" :items="cmap_att_items" v-model="cmap_att_selected" hide-details />
       </div>
       <div>
-          <glue-float-field label="min" v-model:value="cmap_vmin" />
+          <glue-float-field label="min" v-model:value="cmap_vmin" echo-type="float" />
       </div>
       <div>
-          <glue-float-field label="max" v-model:value="cmap_vmax" />
+          <glue-float-field label="max" v-model:value="cmap_vmax" echo-type="float" />
       </div>
       <div>
           <v-select label="colormap" :items="cmap_items" v-model="cmap" hide-details />

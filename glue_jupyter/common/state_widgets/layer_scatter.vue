@@ -9,10 +9,10 @@
                 <v-select label="attribute" :items="cmap_att_items" v-model="cmap_att_selected" hide-details />
             </div>
             <div>
-                <glue-float-field label="min" v-model:value="cmap_vmin" />
+                <glue-float-field label="min" v-model:value="cmap_vmin" echo-type="float" />
             </div>
             <div>
-                <glue-float-field label="max" v-model:value="cmap_vmax" />
+                <glue-float-field label="max" v-model:value="cmap_vmax" echo-type="float" />
             </div>
             <div>
                 <v-select label="colormap" :items="cmap_items" v-model="cmap" hide-details/>
@@ -20,7 +20,7 @@
         </template>
         <div>
             <div class="slider-label">opacity</div>
-            <glue-throttled-slider wait="300" min="0" max="1" step="0.01" v-model:value="alpha" hide-details />
+            <glue-throttled-slider wait="300" min="0" max="1" step="0.01" v-model:value="alpha" echo-type="float" hide-details />
         </div>
         <div class="text-subtitle-2 font-weight-bold">Points</div>
         <div>
@@ -39,27 +39,27 @@
                     <v-select label="attribute" :items="size_att_items" v-model="size_att_selected" hide-details />
                 </div>
                 <div>
-                    <glue-float-field label="min" v-model:value="size_vmin" />
+                    <glue-float-field label="min" v-model:value="size_vmin" echo-type="float" />
                 </div>
                 <div>
-                    <glue-float-field label="max" v-model:value="size_vmax" />
+                    <glue-float-field label="max" v-model:value="size_vmax" echo-type="float" />
                 </div>
             </template>
             <template v-if="density_map">
                 <div>
                     <div class="slider-label">dpi</div>
-                    <glue-throttled-slider wait="300" min="12" max="144" step="1" v-model:value="dpi" hide-details />
+                    <glue-throttled-slider wait="300" min="12" max="144" step="1" v-model:value="dpi" echo-type="float" hide-details />
                 </div>
                 <div>
                     <div class="slider-label">contrast</div>
-                    <glue-throttled-slider wait="300" min="0" max="1" step="0.01" v-model:value="density_contrast"
+                    <glue-throttled-slider wait="300" min="0" max="1" step="0.01" v-model:value="density_contrast" echo-type="float"
                                          hide-details />
                 </div>
             </template>
             <template v-else>
                 <template v-if="(size_mode_items[size_mode_selected] || {}).text === 'Fixed'">
                     <div>
-                        <glue-float-field label="size" v-model:value="size" />
+                        <glue-float-field label="size" v-model:value="size" echo-type="int" />
                     </div>
                 </template>
                 <div>
@@ -68,7 +68,7 @@
                 </div>
                 <div>
                     <div class="slider-label">size scaling</div>
-                    <glue-throttled-slider wait="300" min="0.1" max="10" step="0.01" v-model:value="size_scaling"
+                    <glue-throttled-slider wait="300" min="0.1" max="10" step="0.01" v-model:value="size_scaling" echo-type="float"
                         hide-details />
                 </div>
             </template>
@@ -81,7 +81,7 @@
         <template v-if="line_visible">
             <div>
                 <div class="slider-label">width</div>
-                <glue-throttled-slider wait="300" min="1" max="20" step="1" v-model:value="linewidth" hide-details />
+                <glue-throttled-slider wait="300" min="1" max="20" step="1" v-model:value="linewidth" echo-type="float" hide-details />
             </div>
             <div>
                 <v-select label="linestyle" :items="linestyle_items" v-model="linestyle_selected" hide-details />
@@ -104,7 +104,7 @@
             </div>
             <div>
                 <div class="slider-label">vector size</div>
-                <glue-throttled-slider wait="300" min="0.01" max="1" step="0.01" v-model:value="vector_scaling"
+                <glue-throttled-slider wait="300" min="0.01" max="1" step="0.01" v-model:value="vector_scaling" echo-type="float"
                     hide-details />
             </div>
         </template>

@@ -7,10 +7,10 @@
             <v-text-field type="number" step="1" label="number of bins" v-model.number="hist_n_bin" />
         </div>
         <div>
-            <glue-float-field label="x-min" v-model:value="hist_x_min" />
+            <glue-float-field label="x-min" v-model:value="hist_x_min" echo-type="float" />
         </div>
         <div>
-            <glue-float-field label="x-max" v-model:value="hist_x_max" />
+            <glue-float-field label="x-max" v-model:value="hist_x_max" echo-type="float" />
         </div>
         <div>
             <v-switch v-model="normalize" label="Normalize" hide-details/>

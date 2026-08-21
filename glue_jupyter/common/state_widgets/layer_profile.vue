@@ -1,14 +1,14 @@
 <template>
     <div>
         <div>
-            <glue-float-field label="line width" suffix="px" v-model:value="linewidth" />
+            <glue-float-field label="line width" suffix="px" v-model:value="linewidth" echo-type="float" />
         </div>
         <div>
             <v-select label="attribute" :items="attribute_items" v-model="attribute_selected" hide-details />
         </div>
         <div>
             <div class="slider-label">opacity</div>
-            <glue-throttled-slider wait="300" min="0" max="1" step="0.01" v-model:value="alpha" hide-details />
+            <glue-throttled-slider wait="300" min="0" max="1" step="0.01" v-model:value="alpha" echo-type="float" hide-details />
         </div>
         <div>
             <v-switch label="Plot as steps" v-model="as_steps" />

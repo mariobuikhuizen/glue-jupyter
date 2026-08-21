@@ -18,10 +18,10 @@
     <template v-if="!is_subset">
       <div class="text-subtitle-2 font-weight-bold">Color</div>
       <div>
-          <glue-float-field label="min" v-model:value="vmin" />
+          <glue-float-field label="min" v-model:value="vmin" echo-type="float" />
       </div>
       <div>
-          <glue-float-field label="max" v-model:value="vmax" />
+          <glue-float-field label="max" v-model:value="vmax" echo-type="float" />
       </div>
       <div>
           <v-select label="color" :items="color_mode_items" v-model="color_mode_selected" hide-details />

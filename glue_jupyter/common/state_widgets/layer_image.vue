@@ -35,9 +35,9 @@
                     </v-btn-toggle>
 
                     <template v-if="level_mode == 'Linear'">
-                        <glue-float-field label="contour min" v-model:value="c_min" />
-                        <glue-float-field label="contour max" v-model:value="c_max" />
-                        <glue-float-field label="number of contour levels" v-model:value="n_levels" />
+                        <glue-float-field label="contour min" v-model:value="c_min" echo-type="float" />
+                        <glue-float-field label="contour max" v-model:value="c_max" echo-type="float" />
+                        <glue-float-field label="number of contour levels" v-model:value="n_levels" echo-type="float" />
                     </template>
                     <v-text-field v-else label="contour levels" v-model="levels" :rules="() => c_levels_error !== ''"
                                   :error-messages="c_levels_error !== '' && [c_levels_error]"/>
@@ -55,15 +55,15 @@
             <div v-if="!has_contour || bitmap_visible">
                 <div>
                     <div class="slider-label">opacity</div>
-                    <glue-throttled-slider wait="300" max="1" step="0.01" v-model:value="alpha" hide-details />
+                    <glue-throttled-slider wait="300" max="1" step="0.01" v-model:value="alpha" echo-type="float" hide-details />
                 </div>
                 <div>
                     <div class="slider-label">contrast</div>
-                    <glue-throttled-slider wait="300" max="4" step="0.01" v-model:value="contrast" hide-details />
+                    <glue-throttled-slider wait="300" max="4" step="0.01" v-model:value="contrast" echo-type="float" hide-details />
                 </div>
                 <div>
                     <div class="slider-label">bias</div>
-                    <glue-throttled-slider wait="300" max="1" step="0.01" v-model:value="bias" hide-details />
+                    <glue-throttled-slider wait="300" max="1" step="0.01" v-model:value="bias" echo-type="float" hide-details />
                 </div>
                 <div>
                     <v-select label="stretch" :items="stretch_items" v-model="stretch_selected" hide-details />
@@ -72,10 +72,10 @@
                     <v-select label="percentile" :items="percentile_items" v-model="percentile_selected" hide-details />
                 </div>
                 <div>
-                    <glue-float-field label="min" v-model:value="v_min" />
+                    <glue-float-field label="min" v-model:value="v_min" echo-type="float" />
                 </div>
                 <div>
-                    <glue-float-field label="max" v-model:value="v_max" />
+                    <glue-float-field label="max" v-model:value="v_max" echo-type="float" />
                 </div>
                 <div v-if="color_mode === 'Colormaps'">
                     <v-select label="colormap" :items="cmap_items" v-model="cmap" />
