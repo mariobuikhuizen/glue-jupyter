@@ -4,7 +4,7 @@
         <div>
             <v-select label="color" :items="cmap_mode_items" v-model="cmap_mode_selected" hide-details />
         </div>
-        <template v-if="(cmap_mode_items[cmap_mode_selected] || {}).text === 'Linear'">
+        <template v-if="(cmap_mode_items[cmap_mode_selected] || {}).title === 'Linear'">
             <div>
                 <v-select label="attribute" :items="cmap_att_items" v-model="cmap_att_selected" hide-details />
             </div>
@@ -34,7 +34,7 @@
             <div v-if="density_map === false">
                 <v-select label="size" :items="size_mode_items" v-model="size_mode_selected" hide-details />
             </div>
-            <template v-if="(size_mode_items[size_mode_selected] || {}).text === 'Linear'">
+            <template v-if="(size_mode_items[size_mode_selected] || {}).title === 'Linear'">
                 <div>
                     <v-select label="attribute" :items="size_att_items" v-model="size_att_selected" hide-details />
                 </div>
@@ -57,7 +57,7 @@
                 </div>
             </template>
             <template v-else>
-                <template v-if="(size_mode_items[size_mode_selected] || {}).text === 'Fixed'">
+                <template v-if="(size_mode_items[size_mode_selected] || {}).title === 'Fixed'">
                     <div>
                         <glue-float-field label="size" v-model:value="size" echo-type="int" />
                     </div>

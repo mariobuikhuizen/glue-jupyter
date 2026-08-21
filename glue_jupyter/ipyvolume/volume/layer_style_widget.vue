@@ -26,7 +26,7 @@
       <div>
           <v-select label="color" :items="color_mode_items" v-model="color_mode_selected" hide-details />
       </div>
-      <template v-if="(color_mode_items[color_mode_selected] || {}).text === 'Linear'">
+      <template v-if="(color_mode_items[color_mode_selected] || {}).title === 'Linear'">
         <div>
             <v-select label="colormap" :items="cmap_items" v-model="cmap" hide-details />
         </div>

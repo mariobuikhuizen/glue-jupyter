@@ -11,7 +11,7 @@
     <div>
       <v-select label="size" :items="size_mode_items" v-model="size_mode_selected" hide-details />
     </div>
-    <template v-if="(size_mode_items[size_mode_selected] || {}).text === 'Linear'">
+    <template v-if="(size_mode_items[size_mode_selected] || {}).title === 'Linear'">
       <div>
           <v-select label="attribute" :items="size_att_items" v-model="size_att_selected" hide-details />
       </div>
@@ -36,7 +36,7 @@
     <div>
         <v-select label="color" :items="color_mode_items" v-model="color_mode_selected" hide-details />
     </div>
-    <template v-if="(color_mode_items[color_mode_selected] || {}).text === 'Linear'">
+    <template v-if="(color_mode_items[color_mode_selected] || {}).title === 'Linear'">
       <div>
           <v-select label="attribute" :items="cmap_att_items" v-model="cmap_att_selected" hide-details />
       </div>
