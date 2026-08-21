@@ -3,7 +3,7 @@
     <!-- Cell display/edit bar (always visible) -->
     <div class="glue-edit-bar elevation-1">
       <div class="edit-bar-cell-ref">
-        <v-icon small class="mr-1">{{ selectedCell ? (selectedCell.editable ? 'mdi-table-edit' : 'mdi-table-eye') : 'mdi-table' }}</v-icon>
+        <v-icon size="small" class="mr-1">{{ selectedCell ? (selectedCell.editable ? 'mdi-table-edit' : 'mdi-table-eye') : 'mdi-table' }}</v-icon>
         <span class="edit-bar-label">{{ selectedCell ? selectedCell.column + ' [' + selectedCell.row + ']' : 'Click a cell to view' }}</span>
       </div>
       <div class="edit-bar-input-container">
@@ -11,10 +11,11 @@
           ref="editInput"
           v-model="editValue"
           class="edit-bar-input"
-          dense
+          density="compact"
           hide-details
           single-line
-          outlined
+          variant="outlined"
+          bg-color="white"
           :readonly="!selectedCell || !selectedCell.editable"
           :placeholder="selectedCell ? '' : 'Select a cell...'"
           @keyup.enter="commitEdit"
@@ -24,21 +25,21 @@
       <div class="edit-bar-actions" v-if="selectedCell && selectedCell.editable">
         <v-btn
           icon
-          small
+          size="small"
           color="success"
           @click="commitEdit"
           title="Confirm and move to next row (Enter)"
         >
-          <v-icon small>mdi-check</v-icon>
+          <v-icon size="small">mdi-check</v-icon>
         </v-btn>
         <v-btn
           icon
-          small
+          size="small"
           color="error"
           @click="cancelEdit"
           title="Cancel (Escape)"
         >
-          <v-icon small>mdi-close</v-icon>
+          <v-icon size="small">mdi-close</v-icon>
         </v-btn>
       </div>
     </div>
@@ -248,9 +249,9 @@ module.exports = {
   padding: 0;
 }
 
-.edit-bar-input .v-input__slot {
+.edit-bar-input .v-field,
+.edit-bar-input .v-field__input {
   min-height: 32px !important;
-  background-color: #fff !important;
 }
 
 .edit-bar-actions {
