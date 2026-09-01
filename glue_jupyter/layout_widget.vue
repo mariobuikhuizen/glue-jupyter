@@ -1,5 +1,5 @@
 <template>
-    <v-layout style="flex-direction: column;">
+    <v-layout style="contain: inline-size; flex-direction: column;">
         <v-toolbar density="compact" class="elevation-0">
             <v-toolbar-items>
                 <jupyter-widget :widget="controls.toolbar_selection_tools"></jupyter-widget>
